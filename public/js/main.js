@@ -1,26 +1,31 @@
 //GLOBAL VARIABLES
+//GLOBAL VARIABLES
 activeElementName="";
 
-
 window.onload = function(){
-    var head=document.getElementById('header');
-    head.addEventListener('click', function(){
-        addMapElement();
-    });
+    // var head=document.getElementById('header');
+    // head.addEventListener('click', function(){
+    //     addMapElement();
+    // });
 
-    var close = document.getElementById('close-button');
-    close.addEventListener('click', function(){
-        toggleWindow();
-    });
-
-    getHostels();
+    addElementesToMap('hostels');
+    addElementesToMap('restaurants');
+    addElementesToMap('cites');
 };
-
 
 function ajaxGet(url, callback){
     $.ajax({
         url: url,
         method: "GET",
+        success: function(data){
+            callback(data)
+        }
+    });
+}
+function ajaxDelete(url, callback){
+    $.ajax({
+        url: url,
+        method: "DELETE",
         success: function(data){
             callback(data)
         }
@@ -47,32 +52,6 @@ function ajaxPut(url, inputData, callback){
     });
 }
 
-function toggleWindow(){
-    var popupWindow = document.getElementById('popup-window');
-    if(popupWindow.className === "hide"){
-        popupWindow.className = "show"
-    }else{
-        popupWindow.className = "hide"
-    }
-}
-
-function setMenuContent(element, type){
-    //Setting global variabel - to be able to edit and delete element
-    activeElementName = element.name;
-
-    div=document.getElementById('sideMenu');
-    while (div.firstChild) {
-        div.removeChild(div.firstChild);
-    }
-    newText('h1', element.name, div);
-    newSrc('img', element.img, '', div);
-    newText('h1', element.rank, div);
-    newHref('a', element.link, 'homepage', div);
-    newText('h5', 'edit', div, 'edit-element').addEventListener('click',function(){
-        editElementInDB();
-    });
-
-}
 
 function newText(type, inner, parent, idName){
     var el=document.createElement(type);
@@ -97,8 +76,4 @@ function newHref(type, src, inner, parent){
     el.setAttribute('target', '_blank');
     parent.appendChild(el);
     return el;
-}
-
-function addMapElement(){
-    toggleWindow();
 }

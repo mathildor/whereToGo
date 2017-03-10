@@ -4,11 +4,15 @@
     <meta charset='utf-8' />
     <title>Where to go</title>
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
-    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.24.0/mapbox-gl.js'></script>
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.32.1/mapbox-gl.js'></script>
+    <!-- <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.24.0/mapbox-gl.js'></script> -->
     <script src="https://unpkg.com/github-api/dist/GitHub.bundle.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-
+    <!-- <script src="geosearch/bundle.min.js"></script> -->
+    <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.0.1/mapbox-gl-geocoder.js'></script>
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.24.0/mapbox-gl.css' rel='stylesheet' />
+    <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.0.1/mapbox-gl-geocoder.css' type='text/css' />
+
     <link href='/styles/main.min.css' rel='stylesheet' />
     <link href='/styles/markers.min.css' rel='stylesheet' />
     <link href='/styles/sideMenu.min.css' rel='stylesheet' />
@@ -22,7 +26,11 @@
 
     <h1 id="header">Where to go?</h1>
     <div id="sideMenu">
-        
+        <div id="map-markers-menu">
+            <h4 class="active" id="hostel-marker-btn">Hostels</h4>
+            <h4 class="active" id="cite-marker-btn">Cites</h4>
+            <h4 class="active" id="restaurant-marker-btn">Restaurants</h4>
+        </div>
     </div>
 </div>
 
@@ -36,14 +44,54 @@
         <input id="pop-img"placeholder="image"></input>
         <input id="pop-lat"placeholder="lat"></input>
         <input id="pop-long"placeholder="long"></input>
+        <input id="pop-comment"placeholder="comment"></input>
     </div>
     <button id="saveNewElement-btn"> Save </button>
 </div>
+<div id="element-form">
+    <div id="form-menu">
+        <ul>
+            <li id="hostel-btn" class="active">Hostel</li>
+            <li id="cite-btn">Cite</li>
+            <li id="restaurant-btn">Restaurant</li>
+        </ul>
+    </div>
+    <div id="hostel" class="input-div">
+        <input id="hostels-form-name"placeholder="Hostel name"></input>
+        <input id="hostels-form-score"placeholder="Rating"></input>
+        <input id="hostels-form-link"placeholder="Link"></input>
+        <input id="hostels-form-img"placeholder="Image url"></input>
+        <input id="hostels-form-comment"placeholder="Comment"></input>
+        <input id="hostels-form-lat"placeholder="Latitude"></input>
+        <input id="hostels-form-long"placeholder="Longitude"></input>
+    </div>
+    <div id="cite" class="input-div hide">
+        <input id="cites-form-name"placeholder="Cite name"></input>
+        <input id="cites-form-score"placeholder="Rating"></input>
+        <input id="cites-form-link"placeholder="Link"></input>
+        <input id="cites-form-img"placeholder="Image url"></input>
+        <input id="cites-form-comment"placeholder="Comment"></input>
+        <input id="cites-form-lat"placeholder="Latitude"></input>
+        <input id="cites-form-long"placeholder="Longitude"></input>
+    </div>
+    <div id="restaurant" class="input-div hide">
+        <input id="restaurants-form-name"placeholder="Resturant name"></input>
+        <input id="restaurants-form-score"placeholder="Rating"></input>
+        <input id="restaurants-form-link"placeholder="Link"></input>
+        <input id="restaurants-form-img"placeholder="Image url"></input>
+        <input id="restaurants-form-comment"placeholder="Comment"></input>
+        <input id="restaurants-form-lat"placeholder="Latitude"></input>
+        <input id="restaurants-form-long"placeholder="Longitude"></input>
+    </div>
+    <button id="saveNewElement-form-btn"> Add element </button>
+</div>
 
-<script type="text/javascript" src="js/hostels.js"></script>
 <script type="text/javascript" src="js/main.js"></script>
 <script type="text/javascript" src="js/map.js"></script>
+<script type="text/javascript" src="js/sideMenu.js"></script>
+<script type="text/javascript" src="js/popup.js"></script>
 <script type="text/javascript" src="js/elements.js"></script>
+<script type="text/javascript" src="js/form.js"></script>
 
 <script src="https://www.gstatic.com/firebasejs/3.7.0/firebase.js"></script>
 <script src="https://www.gstatic.com/firebasejs/3.6.10/firebase-app.js"></script>

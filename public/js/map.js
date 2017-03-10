@@ -1,5 +1,6 @@
 mapboxgl.accessToken = 'pk.eyJ1IjoibWF0aGlsZG8iLCJhIjoiY2lrdHZvMHdsMDAxMHdvbTR0MWZkY3FtaCJ9.u4bFYLBtEGNv4Qaa8Uaqzw';
 
+var mapMarkers=[]; //adding objects of type {name: elementName, marker: markerObj}
 
 var map = new mapboxgl.Map({
     container: 'map', // container id
@@ -8,24 +9,102 @@ var map = new mapboxgl.Map({
     zoom: 10 // starting zoom
 });
 
+var geocoder = new MapboxGeocoder({
+    accessToken: mapboxgl.accessToken
+});
+map.addControl(geocoder, 'bottom-left');
 
-function addMarker(hostel){
-    console.log("Adding marker")
-    var el = document.createElement('div');
-    el.className = 'marker';
-    el.style.backgroundImage = 'url(' + hostel.img + ')';
-    el.addEventListener('click', function() {
-        setMenuContent(hostel, 'hostel');
+map.on('load', function() {
+    map.addSource('single-point', {
+        "type": "geojson",
+        "data": {
+            "type": "FeatureCollection",
+            "features": []
+        }
     });
 
-    //var popup = createPopup(hostel, 'hostel');
+    map.addLayer({
+        "id": "point",
+        "source": "single-point",
+        "type": "circle",
+        "paint": {
+            "circle-radius": 10,
+            "circle-color": "#007cbf"
+        }
+    });
+    geocoder.on('result', function(ev) {
+        console.log(ev.result.geometry);
+            map.getSource('single-point').setData(ev.result.geometry);
+            setFormCoords(ev.result.geometry.coordinates);
+    });
+});
+
+function addMarker(element, type){
+    console.log("Adding marker")
+    var el = document.createElement('div');
+
+    el.className = 'marker '+type;
+    el.style.backgroundImage = 'url(' + element.img + ')';
+    el.addEventListener('click', function() {
+        setMenuContent(element, type);
+    });
+
+    //var popup = createPopup(element, 'element');
 
     // add marker to map
     var iconSize=[70, 70];
-    new mapboxgl.Marker(el, {offset: [-iconSize[0] / 2, -iconSize[1] / 2]})
-    .setLngLat(hostel.coords)
+    var newMarker = new mapboxgl.Marker(el, {offset: [-iconSize[0] / 2, -iconSize[1] / 2]})
+    .setLngLat(element.coords)
     //.setPopup(popup)
     .addTo(map);
+    markerObj={
+        name: element.name,
+        marker: newMarker
+    };
+    mapMarkers.push(markerObj);
+}
+
+function addMarkers(type){
+    addElementesToMap(type);
+}
+
+function removeMarkers(type){
+    ajaxGet(type, function(elements){
+        elements.forEach(
+            function(el) {
+                removeMarker(el, type);
+            }
+        );
+    });
+}
+
+
+function toggleMarkers(type, btn_id){
+    if(document.getElementById(btn_id).className = "active"){
+        document.getElementById(btn_id).className = "disable";
+        removeMarkers(type);
+    }else{
+        document.getElementById(btn_id).className = "active";
+        addMarkers(type);
+    }
+}
+
+function removeMarker(el, type){
+    //TODO
+    //loop through all mapMarkers
+    for(var i = 0; i<mapMarkers.length; i++){
+        console.log(mapMarkers[i]);
+        console.log(el.name);
+        if(mapMarkers[i].name === el.name){
+            console.log('found correct marker');
+            console.log(mapMarkers[i].marker);
+            map.removeLayer(mapMarkers[i].marker);
+            mapMarkers.splice(i, 1); //removing marker from list
+            break;
+        }else{
+            console.log('different marker');
+        }
+    }
 }
 
 // function createPopup(element, type){
@@ -36,13 +115,23 @@ function addMarker(hostel){
 //     return popup;
 // }
 
-function getHostels(){
-    ajaxGet('hostels', function(hostels){
-        
-        hostels.forEach(
-            function(hostel) {
-                addMarker(hostel);
+function addElementesToMap(type){
+    ajaxGet(type, function(elements){
+        elements.forEach(
+            function(el) {
+                addMarker(el, type);
             }
         );
     });
 }
+
+// function getHostels(){
+//     ajaxGet('hostels', function(hostels){
+//
+//         hostels.forEach(
+//             function(hostel) {
+//                 addMarker(hostel, 'hostel');
+//             }
+//         );
+//     });
+// }

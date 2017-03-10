@@ -1,1 +1,1 @@
-#sideMenu{background-color:rgba(255,255,255,0.95);height:100vh;width:300px;position:fixed;z-index:10;right:0;text-align:center}#sideMenu img{width:100%}#sideMenu h1{padding:3px}
+#sideMenu{background-color:rgba(255,255,255,0.95);height:100vh;width:300px;position:fixed;z-index:10;right:0;text-align:center;overflow:scroll}#sideMenu img{width:100%}#sideMenu h1{padding:3px}#sideMenu #map-markers-menu .disable{color:grey;cursor:default}#sideMenu #map-markers-menu .active{cursor:pointer}

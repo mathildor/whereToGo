@@ -13,7 +13,7 @@ body {
   width: 100vw;
   display: -webkit-box;
   #header{
-    position: fixed;
+    position: absolute;
     z-index: 10;
     background-color: white;
     padding: 20px;
@@ -21,7 +21,7 @@ body {
   }
   #map {
     width:100vw;
-    height: 100vh;
+    height: 80vh;
   }
 }
 
@@ -62,16 +62,54 @@ body {
     margin-top: 3px;
     margin-bottom: 3px;
   }
-  button{
-    border-radius: 16px;
-    padding: 7px;
-    width: 120px;
-    font-size: 17px;
-    text-align: center;
-    background-color: #9cda9c;
-    border: none;
-    color: white;
-    margin-top: 50px;
-    margin-left: 37%;
+}
+
+button{
+  border-radius: 16px;
+  padding: 7px;
+  width: 120px;
+  font-size: 17px;
+  text-align: center;
+  background-color: #9cda9c;
+  border: none;
+  color: white;
+  margin-top: 30px;
+  margin-left: 37%;
+}
+
+#element-form{
+  margin-bottom: 30px;
+
+  #form-menu{
+    li{
+      list-style: none;
+      margin-left: 20px;
+      margin-right: 20px;
+      font-size: 20px;
+    }
+
+    ul{
+      display: -webkit-box;
+      margin-left: -20px;
+      margin-bottom: 30px;
+      cursor: pointer;
+    }
+    .active{
+      color: grey;
+      cursor: default;
+    }
+  }
+
+  .input-div{
+    margin-left: 30px;
+    width: 75%;
+  }
+  input{
+    width: 150px;
+    padding: 12px;
+    font-size: 18px;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom: 10px;
   }
 }

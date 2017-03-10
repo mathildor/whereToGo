@@ -1,9 +1,8 @@
 
-
 var mongoose     = require('mongoose');
 var Schema       = mongoose.Schema;
 
-var HostelSchema   = new Schema({
+var RestaurantSchema   = new Schema({
     name: String,
     coords: Array,
     rank: Number,
@@ -12,4 +11,4 @@ var HostelSchema   = new Schema({
     comment: String
 });
 
-module.exports = mongoose.model('Hostels', HostelSchema); //first input here defines the collection name in db
+module.exports = mongoose.model('Restaurants', RestaurantSchema); //first input here defines the collection name in db

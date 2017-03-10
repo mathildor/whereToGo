@@ -6,11 +6,23 @@
     z-index: 10;
     right: 0;
     text-align: center;
+    overflow: scroll;
 
     img{
         width: 100%;
     }
     h1{
         padding: 3px;
+    }
+
+
+    #map-markers-menu{
+        .disable{
+            color: grey;
+            cursor: default;
+        }
+        .active{
+            cursor: pointer;
+        }
     }
 }
