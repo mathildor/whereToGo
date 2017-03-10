@@ -2,7 +2,6 @@
   "name": "wheretogo",
   "version": "1.0.0",
   "description": "## Run $ bundle exec jekyll s",
-  "main": "app.js",
   "dependencies": {
     "body-parser": "^1.17.1",
     "express": "^4.15.2",
