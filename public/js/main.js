@@ -8,9 +8,7 @@ window.onload = function(){
     //     addMapElement();
     // });
 
-    addElementesToMap('hostels');
-    addElementesToMap('restaurants');
-    addElementesToMap('cites');
+    addElementesToMap('places');
 };
 
 function ajaxGet(url, callback){
@@ -62,13 +60,18 @@ function newText(type, inner, parent, idName){
     }
     return el;
 }
-function newSrc(type, src, inner, parent){
+
+function newSrc(type, src, inner, parent, idName){
     var el=document.createElement(type);
     el.innerHTML=inner;
     el.setAttribute('src', src);
+    if(idName){
+        el.id=idName;
+    }
     parent.appendChild(el);
     return el;
 }
+
 function newHref(type, src, inner, parent){
     var el=document.createElement(type);
     el.innerHTML=inner;

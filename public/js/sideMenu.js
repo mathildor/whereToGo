@@ -42,17 +42,17 @@ function setMenuContent(element, type){ //type = hostels, cites, restaurants
 
     newText('h1', element.name, div);
     newSrc('img', element.img, '', div);
-    newText('h1', element.rank, div);
-    newHref('a', element.link, 'homepage', div);
-    newText('p', element.comment, div);
-
-    newText('h5', 'edit', div, 'edit-element').addEventListener('click', function(){
+    var editIconUrl='../img/edit-icon.ico';
+    newSrc('img', editIconUrl,'', div,'edit-element').addEventListener('click', function(){
         editElementInDB(type);
     });
-    newText('h5', 'delete', div, 'delete-element').addEventListener('click', function(){
+    var deleteIconUrl='../img/delete-icon.png';
+    newSrc('img', deleteIconUrl,'', div, 'delete-element').addEventListener('click', function(){
         deleteElementInDb(type);
     });
 
-
+    newHref('a', element.link, 'More info', div);
+    newText('p', element.comment, div);
+    newText('h1', element.rank, div);
 
 }

@@ -14,7 +14,13 @@
     h1{
         padding: 3px;
     }
-
+    #delete-element, #edit-element{
+        width: 20px;
+        margin-left: 10px;
+        margin-right: 10px;
+        margin-top: 20px;
+        cursor: pointer;
+    }
 
     #map-markers-menu{
         .disable{
@@ -24,5 +30,12 @@
         .active{
             cursor: pointer;
         }
+    }
+    a{
+        color: black;
+        margin-left: 10px;
+    }
+    p{
+        padding: 3px;
     }
 }

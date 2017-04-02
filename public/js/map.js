@@ -6,7 +6,7 @@ var map = new mapboxgl.Map({
     container: 'map', // container id
     style: 'mapbox://styles/mapbox/streets-v9', //stylesheet location
     center: [139.8, 35.7], // starting position
-    zoom: 10 // starting zoom
+    zoom: 6 // starting zoom
 });
 
 var geocoder = new MapboxGeocoder({
