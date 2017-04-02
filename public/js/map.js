@@ -65,6 +65,7 @@ function addMarker(element, type){
 }
 
 function addMarkers(type){
+    console.log("Adding markers");
     addElementesToMap(type);
 }
 
@@ -80,29 +81,22 @@ function removeMarkers(type){
 
 
 function toggleMarkers(type, btn_id){
-    if(document.getElementById(btn_id).className = "active"){
+    if(document.getElementById(btn_id).className == "active"){
         document.getElementById(btn_id).className = "disable";
         removeMarkers(type);
     }else{
-        document.getElementById(btn_id).className = "active";
         addMarkers(type);
+        document.getElementById(btn_id).className = "active";
     }
 }
 
 function removeMarker(el, type){
-    //TODO
     //loop through all mapMarkers
     for(var i = 0; i<mapMarkers.length; i++){
-        console.log(mapMarkers[i]);
-        console.log(el.name);
         if(mapMarkers[i].name === el.name){
-            console.log('found correct marker');
-            console.log(mapMarkers[i].marker);
-            map.removeLayer(mapMarkers[i].marker);
+            mapMarkers[i].marker.remove();
             mapMarkers.splice(i, 1); //removing marker from list
             break;
-        }else{
-            console.log('different marker');
         }
     }
 }

@@ -1,7 +1,4 @@
-// BASE SETUP
-// BASE SETUP
-// BASE SETUP
-// BASE SETUP
+
 // =============================================================================
 
 // call the packages we need
@@ -16,7 +13,7 @@ var mongoose   = require('mongoose');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-//var port = process.env.PORT || 8080;        // set our port
+
 
 // ROUTES FOR OUR API
 // =============================================================================
@@ -28,15 +25,17 @@ app.use(express.static(path.join(__dirname, 'public')));
 //Set access and allow for geosearch
 app.use('/geosearch', express.static(__dirname + '/node_modules/leaflet-geosearch/dist/'));
 
-mongoose.Promise = global.Promise;
+mongoose.Promise = global.Promise; // avoid error - don't know what it does though
+
 //Connect to db:
 mongoose.connect('mongodb://heroku_8dg8fhxt:d20n7eafi30j543hsil10gslsf@ds157839.mlab.com:57839/heroku_8dg8fhxt');
 
-//Import models:
-var Hostel = require('./models/hostel');
-var Cite = require('./models/cite');
-var Restaurant = require('./models/restaurant');
+// =========  API =======================================================================================================================
 
+//Import DB models:
+var Hostel      = require('./models/hostel');
+var Cite        = require('./models/cite');
+var Restaurant  = require('./models/restaurant');
 
 // REGISTER OUR ROUTES -------------------------------
 // all of our routes will be prefixed with /
@@ -185,13 +184,13 @@ function putOneFunction(req, res, type){
         if (err)
             res.send(err);
         element = elements[0];
-        console.log(element);
+
         //Setting new values
-        element.name = req.body.name;
-        element.img = req.body.img;
-        element.rank = req.body.rank;
-        element.link = req.body.link;
-        element.coords = req.body.coords;
+        element.name    = req.body.name;
+        element.img     = req.body.img;
+        element.rank    = req.body.rank;
+        element.link    = req.body.link;
+        element.coords  = req.body.coords;
         element.comment = req.body.comment;
 
         element.save(function(err) {
@@ -205,8 +204,7 @@ function putOneFunction(req, res, type){
 
 
 
-// START THE SERVER
-// =============================================================================
-//app.listen(port);
-//console.log('Magic happens on port ' + port);
+// START THE SERVER (happens in .bin/www, and therefor have to export the module to make it importable)
+// ====================================================================================================
+
 module.exports = app;

@@ -23,10 +23,18 @@ function setMenuContent(element, type){ //type = hostels, cites, restaurants
     //Setting global variabel - to be able to edit and delete element
     activeElementName = element.name;
 
-    div=document.getElementById('sideMenu');
+    div=document.getElementById('sideMenu-info');
+    console.log(div);
     while (div.firstChild) {
         div.removeChild(div.firstChild);
     }
+    newText('h5', 'Back', div).addEventListener('click', function(){
+        //backToMenu();
+        while (div.firstChild) {
+            div.removeChild(div.firstChild);
+        }
+    });
+
     newText('h1', element.name, div);
     newSrc('img', element.img, '', div);
     newText('h1', element.rank, div);
@@ -39,5 +47,7 @@ function setMenuContent(element, type){ //type = hostels, cites, restaurants
     newText('h5', 'delete', div, 'delete-element').addEventListener('click', function(){
         deleteElementInDb(type);
     });
+
+
 
 }
