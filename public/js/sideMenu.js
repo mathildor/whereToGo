@@ -19,6 +19,7 @@ document.getElementById('restaurant-marker-btn').addEventListener('click', funct
 
 
 function setMenuContent(element, type){ //type = hostels, cites, restaurants
+    document.getElementById("sideMenu").className="show";
     sideMenu.active.type = type;
     //Setting global variabel - to be able to edit and delete element
     activeElementName = element.name;
@@ -28,11 +29,12 @@ function setMenuContent(element, type){ //type = hostels, cites, restaurants
     while (div.firstChild) {
         div.removeChild(div.firstChild);
     }
-    newText('h5', 'Back', div).addEventListener('click', function(){
+    newText('h5', 'CLOSE', div).addEventListener('click', function(){
         //backToMenu();
         while (div.firstChild) {
             div.removeChild(div.firstChild);
         }
+        document.getElementById("sideMenu").className="hide";
     });
 
     newText('h1', element.name, div);
