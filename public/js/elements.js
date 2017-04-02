@@ -25,26 +25,37 @@ function saveNewElement(type){ //type = hostels / cites / restaurants
 
 //Both for popup and form at bottom of page
 function getFormElement(formType, elementType){
+    console.log('form.active');
+    console.log(form.active);
+    console.log(formType);
     var newElement={};
-    newElement.name=document.getElementById(form.active+'-'+formType+'-name').value;
-    newElement.img=document.getElementById(form.active+'-'+formType+'-img').value;
-    newElement.link=document.getElementById(form.active+'-'+formType+'-link').value;
-    newElement.rank=document.getElementById(form.active+'-'+formType+'-score').value;
-    newElement.comment=document.getElementById(form.active+'-'+formType+'-comment').value;
+    var coordinates=[];
+
+    if(formType == 'pop'){
+        console.log('id is:');
+        console.log(formType+'-name');
+        newElement.name=document.getElementById(formType+'-name').value;
+        newElement.img=document.getElementById(formType+'-img').value;
+        newElement.link=document.getElementById(formType+'-link').value;
+        newElement.rank=document.getElementById(formType+'-score').value;
+        newElement.comment=document.getElementById(formType+'-comment').value;
+        coordinates.push(parseFloat(document.getElementById(formType+'-long').value));
+        coordinates.push(parseFloat(document.getElementById(formType+'-lat').value));
+    }else{
+        activeForm = form.active+'-';
+        newElement.name=document.getElementById(activeForm+formType+'-name').value;
+        newElement.img=document.getElementById(activeForm+formType+'-img').value;
+        newElement.link=document.getElementById(activeForm+formType+'-link').value;
+        newElement.rank=document.getElementById(activeForm+formType+'-score').value;
+        newElement.comment=document.getElementById(activeForm+formType+'-comment').value;
+        coordinates.push(parseFloat(document.getElementById(form.active+'-'+formType+'-long').value));
+        coordinates.push(parseFloat(document.getElementById(form.active+'-'+formType+'-lat').value));
+    }
 
     //ADD if forms are different depending on type!
     // if(elementType === 'hostel'){
     //
     // }
-
-    coordinates=[];
-    if(newElementFromMapClick){
-        //Set coordinates based on last double-map-click
-        //newElement.coordinates.push(map.getCoo);
-    }else{
-        coordinates.push(parseFloat(document.getElementById(form.active+'-'+formType+'-long').value));
-        coordinates.push(parseFloat(document.getElementById(form.active+'-'+formType+'-lat').value));
-    }
     newElement.coords=coordinates;
     return newElement;
 }

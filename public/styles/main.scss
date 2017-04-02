@@ -36,7 +36,7 @@ body {
       padding: 4px;
       display: -webkit-box;
       margin-top: 8px;
-      box-shadow: 3px 4px 10px #989898;      
+      box-shadow: 3px 4px 10px #989898;
     }
     img:hover{
       cursor: pointer;
@@ -134,4 +134,8 @@ button{
     margin-right: 5px;
     margin-bottom: 10px;
   }
+}
+
+.mapboxgl-ctrl-bottom-right{
+  display: none;
 }

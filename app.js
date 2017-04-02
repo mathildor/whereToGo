@@ -36,6 +36,7 @@ mongoose.connect('mongodb://heroku_8dg8fhxt:d20n7eafi30j543hsil10gslsf@ds157839.
 var Hostel      = require('./models/hostel');
 var Cite        = require('./models/cite');
 var Restaurant  = require('./models/restaurant');
+var Place       = require('./models/place');
 
 // REGISTER OUR ROUTES -------------------------------
 // all of our routes will be prefixed with /
@@ -75,7 +76,7 @@ router.route('/hostels/:element_id')
 
 //CITES ROUTES
 router.route('/cites/')
-    //create hostel:
+    //create cite:
     .post(function(req, res){
         postFunction(req, res, 'cites')
     })
@@ -101,7 +102,7 @@ router.route('/cites/:element_id')
 
 //RESTAURANTS ROUTES
 router.route('/restaurants/')
-    //create hostel:
+    //create restaurant:
     .post(function(req, res){
         postFunction(req, res, 'restaurants')
     })
@@ -123,14 +124,39 @@ router.route('/restaurants/:element_id')
     .put(function(req, res){
         putOneFunction(req, res, 'restaurants');
     });
+//PLACES ROUTES
+router.route('/places/')
+    //create place:
+    .post(function(req, res){
+        postFunction(req, res, 'places')
+    })
+    //get all places
+    .get(function(req, res) {
+        getFunction(req, res, 'places')
+    });
+router.route('/places/:element_id')
+    //Getting specific restuarant
+    .get(function(req, res){
+        getOneFunction(req, res, 'places');
+    })
+
+    .delete(function(req, res){
+        deleteOneFunction(req, res, 'places');
+    })
+
+    //update restuarant
+    .put(function(req, res){
+        putOneFunction(req, res, 'places');
+    });
 
 modelTypes = {
     'hostels': Hostel,
     'cites': Cite,
-    'restaurants': Restaurant
+    'restaurants': Restaurant,
+    'places': Place
 }
 
-function getFunction(req, res, type){ //type = hostels / cites / restaurants
+function getFunction(req, res, type){ //type = hostels / cites / restaurants / places
     var Model = modelTypes[type];
 
     console.log("get all: "+type);
@@ -141,7 +167,7 @@ function getFunction(req, res, type){ //type = hostels / cites / restaurants
     });
 }
 
-function postFunction(req, res, type){ //type = hostels / cites / restaurants
+function postFunction(req, res, type){ //type = hostels / cites / restaurants / places
     console.log('in post function');
     var Model = modelTypes[type];
 

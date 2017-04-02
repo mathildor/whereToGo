@@ -2,14 +2,16 @@
 var hostelForm = document.getElementById('hostel');
 var citeForm = document.getElementById('cite');
 var restaurantForm = document.getElementById('restaurant');
+var placeForm = document.getElementById('place');
 
 var hostel_btn = document.getElementById('hostel-btn');
 var cite_btn = document.getElementById('cite-btn');
 var restaurant_btn = document.getElementById('restaurant-btn');
+var place_btn = document.getElementById('place-btn');
 
 
 var form = {
-    active: 'hostels', // resturant, cite
+    active: 'hostels', // resturant, cite, place
     element: hostelForm,
     btn: hostel_btn
 }
@@ -26,6 +28,9 @@ cite_btn.addEventListener('click', function(){
 hostel_btn.addEventListener('click', function(){
     changeActiveForm(hostelForm, hostel_btn, 'hostels');
 });
+place_btn.addEventListener('click', function(){
+    changeActiveForm(placeForm, place_btn, 'places');
+});
 
 //save button event
 document.getElementById('saveNewElement-form-btn').addEventListener('click', function(){
@@ -35,12 +40,14 @@ document.getElementById('saveNewElement-form-btn').addEventListener('click', fun
 
     if(document.getElementById(form.active+'-form-img').value.length<1){
         //set default img:
-        if(form.active ==="hostels"){
+        if(form.active == "hostels"){
             document.getElementById(form.active+'-form-img').value = 'http://sr.photos3.fotosearch.com/bthumb/CSP/CSP860/k8604313.jpg';
-        }else if(form.active === "cites"){
+        }else if(form.active == "cites"){
             document.getElementById(form.active+'-form-img').value = 'https://c1.staticflickr.com/4/3735/9688947414_8298804036.jpg';
-        }else if(form.active === "restaurants"){
+        }else if(form.active == "restaurants"){
             document.getElementById(form.active+'-form-img').value = 'http://www.hipafrica.com/app/uploads/2015/06/RESTAURANT.svg';
+        }else if(form.active == "places"){
+            document.getElementById(form.active+'-form-img').value = 'http://weknownyourdreamz.com/images/star/star-04.jpg';
         }
     }
 

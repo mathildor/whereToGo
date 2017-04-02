@@ -1,6 +1,6 @@
 var sideMenu = {
     active:{
-        type:"" //hostels, cites, restaurants
+        type:"" //hostels, cites, restaurants, places
     }
 }
 
@@ -14,6 +14,9 @@ document.getElementById('cite-marker-btn').addEventListener('click', function(){
 });
 document.getElementById('restaurant-marker-btn').addEventListener('click', function(){
     toggleMarkers('restaurants', 'restaurant-marker-btn');
+});
+document.getElementById('place-marker-btn').addEventListener('click', function(){
+    toggleMarkers('places', 'place-marker-btn');
 });
 
 

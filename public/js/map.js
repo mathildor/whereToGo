@@ -37,6 +37,11 @@ map.on('load', function() {
             map.getSource('single-point').setData(ev.result.geometry);
             setFormCoords(ev.result.geometry.coordinates);
     });
+
+    map.on('dblclick', function(data){
+        console.log(data.lngLat);
+        setFormCoords([data.lngLat.lng, data.lngLat.lat]);
+    });
 });
 
 function addMarker(element, type){
@@ -44,7 +49,11 @@ function addMarker(element, type){
     var el = document.createElement('div');
 
     el.className = 'marker '+type;
-    el.style.backgroundImage = 'url(' + element.img + ')';
+    if(type=="places"){ //want a star in map independent of saved img for place
+        el.style.backgroundImage = 'url(http://weknownyourdreamz.com/images/star/star-04.jpg)';
+    }else{
+        el.style.backgroundImage = 'url(' + element.img + ')';
+    }
     el.addEventListener('click', function() {
         setMenuContent(element, type);
     });
@@ -101,14 +110,6 @@ function removeMarker(el, type){
     }
 }
 
-// function createPopup(element, type){
-//     var popup = new mapboxgl.Popup({offset: 25})
-//         .setText('Construction on the Washington Monument began in 1848.')
-//         .setHTML('<a href='+ element.link +' target="_blank">Link</a>');
-//
-//     return popup;
-// }
-
 function addElementesToMap(type){
     ajaxGet(type, function(elements){
         elements.forEach(
@@ -118,14 +119,3 @@ function addElementesToMap(type){
         );
     });
 }
-
-// function getHostels(){
-//     ajaxGet('hostels', function(hostels){
-//
-//         hostels.forEach(
-//             function(hostel) {
-//                 addMarker(hostel, 'hostel');
-//             }
-//         );
-//     });
-// }
