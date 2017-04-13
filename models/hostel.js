@@ -1,12 +1,11 @@
 
-
 var mongoose     = require('mongoose');
 var Schema       = mongoose.Schema;
 
 var HostelSchema   = new Schema({
     name: String,
     coords: Array,
-    rank: Number,
+    rank: String,
     img: String,
     link: String,
     comment: String

@@ -162,7 +162,7 @@ function getFunction(req, res, type){ //type = hostels / cites / restaurants / p
     console.log("get all: "+type);
     Model.find(function(err, modelElements){
         if (err)
-            res.send(err)
+            return res.send(err)
         res.json(modelElements);
     });
 }
@@ -176,8 +176,8 @@ function postFunction(req, res, type){ //type = hostels / cites / restaurants / 
     console.log(element);
     element.save(function(err){
             if (err)
-                res.send(err);
-
+                console.log("error when saving element!!");
+                return res.send(err);
             res.json({ message: 'Element created!' });
         });
 }
@@ -186,7 +186,7 @@ function getOneFunction(req, res, type){
     var Model = modelTypes[type];
     Model.find({name: req.params.element_id}, function(err, element){
         if(err)
-            res.send(err)
+            return res.send(err)
         res.json(element)
     });
 }
@@ -196,7 +196,7 @@ function deleteOneFunction(req, res, type){
     var Model = modelTypes[type];
     Model.remove({name: req.params.element_id}, function(err, element) {
         if (err)
-            res.send(err);
+            return res.send(err);
 
         res.json({ message: type+' Successfully deleted' });
     });
@@ -208,7 +208,7 @@ function putOneFunction(req, res, type){
 
     Model.find({name: req.params.element_id}, function(err, elements){
         if (err)
-            res.send(err);
+            return res.send(err);
         element = elements[0];
 
         //Setting new values

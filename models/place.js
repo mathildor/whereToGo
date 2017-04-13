@@ -5,7 +5,7 @@ var Schema       = mongoose.Schema;
 var PlaceSchema   = new Schema({
     name: String,
     coords: Array,
-    rank: Number,
+    rank: String,
     img: String,
     link: String,
     comment: String

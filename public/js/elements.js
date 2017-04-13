@@ -12,7 +12,7 @@ document.getElementById('saveNewElement-btn').addEventListener('click', function
     }
 });
 
-function saveNewElement(type){ //type = hostels / cites / restaurants
+function saveNewElement(type){ //type = hostels / cites / restaurants / places
     console.log('saving element of type: '+type);
     var newElement = getFormElement('form');
     console.log('element to save is: ');
@@ -57,6 +57,9 @@ function getFormElement(formType, elementType){
     //
     // }
     newElement.coords=coordinates;
+    console.log("rank is:");
+    console.log(newElement.rank);
+    console.log(newElement)
     return newElement;
 }
 

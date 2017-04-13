@@ -13,6 +13,7 @@ var geocoder = new MapboxGeocoder({
     accessToken: mapboxgl.accessToken
 });
 map.addControl(geocoder, 'bottom-left');
+map.addControl(new mapboxgl.GeolocateControl());
 
 map.on('load', function() {
     map.addSource('single-point', {
