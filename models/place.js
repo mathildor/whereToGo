@@ -8,7 +8,8 @@ var PlaceSchema   = new Schema({
     rank: String,
     img: String,
     link: String,
-    comment: String
+    comment: String,
+    status: String //   visit / visited
 });
 
 module.exports = mongoose.model('Places', PlaceSchema); //first input here defines the collection name in db

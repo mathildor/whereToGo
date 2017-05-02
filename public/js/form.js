@@ -50,6 +50,12 @@ document.getElementById('saveNewElement-form-btn').addEventListener('click', fun
             document.getElementById(form.active+'-form-img').value = 'http://weknownyourdreamz.com/images/star/star-04.jpg';
         }
     }
+    if(document.getElementById(form.active+'-form-score').value.length<1){
+        document.getElementById(form.active+'-form-img').value = " ";
+    }
+    if(document.getElementById(form.active+'-form-link').value.length<1){
+        document.getElementById(form.active+'-form-link').value = " ";
+    }
 
     for(var i=1; i<inputFields.length; i=i+2){
         if(inputFields[i].value.length < 1){
@@ -66,6 +72,19 @@ function setFormCoords(coords){
     document.getElementById(form.active+'-form-long').value=coords[0];
 }
 
+function setFormValues(place){
+    console.log(place);
+    document.getElementById(form.active+'-form-name').value = place.name;
+    if(place.photos != undefined){
+        document.getElementById(form.active+'-form-img').value = place.photos[0].getUrl({'maxWidth': 100, 'maxHeight': 100});
+    }
+    if(place.rating != undefined){
+        document.getElementById(form.active+'-form-score').value = place.rating;
+    }
+    if(place.website != undefined){
+        document.getElementById(form.active+'-form-link').value = place.website;
+    }
+}
 
 function disableForm(form, form_btn){
     form_btn.className = ""; //remove active class

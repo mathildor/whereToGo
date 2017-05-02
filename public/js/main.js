@@ -8,7 +8,7 @@ window.onload = function(){
     //     addMapElement();
     // });
 
-    addElementesToMap('places');
+    addElementsToMap('places');
 };
 
 function ajaxGet(url, callback){

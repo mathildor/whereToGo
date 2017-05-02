@@ -16,7 +16,8 @@ body {
     position: absolute;
     z-index: 10;
     background-color: white;
-    padding: 20px;
+    padding: 12px;
+    width: 210px;
     left: 0
   }
   #map {
@@ -27,7 +28,7 @@ body {
   #map-markers-menu{
     position: absolute;
     left: 10px;
-    top: 110px;
+    top: 134px;
 
     img{
       width: 44px;
@@ -138,4 +139,15 @@ button{
 
 .mapboxgl-ctrl-bottom-right{
   display: none;
+}
+
+#address-search{
+    position: absolute;
+    left: 6px;
+    top: 100px;
+    padding: 5px;
+    width: 215px;
+    border: 2px solid #bbbbbb;
+    border-radius: 4px;
+    font-size: 14px;
 }

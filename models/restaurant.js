@@ -5,7 +5,7 @@ var Schema       = mongoose.Schema;
 var RestaurantSchema   = new Schema({
     name: String,
     coords: Array,
-    rank: String    ,
+    rank: String,
     img: String,
     link: String,
     comment: String

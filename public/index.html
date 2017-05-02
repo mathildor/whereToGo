@@ -10,6 +10,9 @@
     <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.0.1/mapbox-gl-geocoder.js'></script>
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.24.0/mapbox-gl.css' rel='stylesheet' />
     <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.0.1/mapbox-gl-geocoder.css' type='text/css' />
+    <!--  google js api-->
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA4pa92O3FJDf_AM65Ppc9uFun6U2_aV_g&libraries=places"></script>
+    <!-- <script src="https://maps.google.com/maps?file=api&amp;v=3&amp;sensor=false"type="text/javascript"></script> -->
 
     <link href='/styles/main.min.css' rel='stylesheet' />
     <link href='/styles/markers.min.css' rel='stylesheet' />
@@ -23,6 +26,7 @@
     <div id='map'></div>
 
     <h1 id="header"> Where to go? </h1>
+    <input id="address-search" type="text" placeholder="Search adress..">Søk</input>
     <div id="map-markers-menu">
         <img src="../img/hostel.png" class="disable" id="hostel-marker-btn"></img>
         <img src="../img/cite.png" class="disable" id="cite-marker-btn"></img>

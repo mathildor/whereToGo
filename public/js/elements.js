@@ -51,14 +51,16 @@ function getFormElement(formType, elementType){
         coordinates.push(parseFloat(document.getElementById(form.active+'-'+formType+'-long').value));
         coordinates.push(parseFloat(document.getElementById(form.active+'-'+formType+'-lat').value));
     }
+    newElement.coords=coordinates;
 
     //ADD if forms are different depending on type!
-    // if(elementType === 'hostel'){
-    //
-    // }
-    newElement.coords=coordinates;
-    console.log("rank is:");
-    console.log(newElement.rank);
+    if(elementType == 'place'){ //For place there is also a status field: visit / visited + maybe others
+        if(formType == 'pop'){
+            newElement.status = document.getElementById(formType+'-status').value;
+        }else{
+            newElement.status = document.getElementById(activeForm+formType+'-status').value;
+        }
+    }
     console.log(newElement)
     return newElement;
 }
