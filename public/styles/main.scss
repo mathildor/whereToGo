@@ -87,17 +87,19 @@ body {
   }
 }
 
-button{
-  border-radius: 16px;
-  padding: 7px;
-  width: 120px;
-  font-size: 17px;
-  text-align: center;
-  background-color: #9cda9c;
-  border: none;
-  color: white;
-  margin-top: 30px;
-  margin-left: 37%;
+#element-form, #popup-window{
+  button{
+    border-radius: 16px;
+    padding: 7px;
+    width: 120px;
+    font-size: 17px;
+    text-align: center;
+    background-color: #9cda9c;
+    border: none;
+    color: white;
+    margin-top: 30px;
+    margin-left: 37%;
+  }
 }
 
 #element-form{

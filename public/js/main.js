@@ -1,14 +1,9 @@
 //GLOBAL VARIABLES
-//GLOBAL VARIABLES
 activeElementName="";
+var editingMode = "False";
 
 window.onload = function(){
-    // var head=document.getElementById('header');
-    // head.addEventListener('click', function(){
-    //     addMapElement();
-    // });
-
-    addElementsToMap('places');
+    showCategory("Bakeverk");
 };
 
 function ajaxGet(url, callback){
