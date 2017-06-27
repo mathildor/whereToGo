@@ -71,29 +71,41 @@ function createRecipeContent(rec){
     img.setAttribute("src",rec.img);
     div.appendChild(img);
 
+    if(rec.link.length>1){
+        var link = document.createElement("a");
+        link.innerHTML="Se oppskrift på nett";
+        link.setAttribute("href", rec.link);
+        link.setAttribute("target","_blank");
+        div.appendChild(link);
+    }
+
     var row_div = document.createElement("div");
     row_div.id="row_div";
 
     //INGREEDIENTS
-    var ing_div = document.createElement("div");
-    ing_div.id = "ing_div";
-    var name = document.createElement("h2");
-    name.innerHTML = "Ingredienser:";
-    ing_div.appendChild(name);
-    createIngreedientListDOM(rec.ingreedients, ing_div);
-    row_div.appendChild(ing_div);
+    if(rec.ingreedients.length>1){
+        var ing_div = document.createElement("div");
+        ing_div.id = "ing_div";
+        var name = document.createElement("h2");
+        name.innerHTML = "Ingredienser:";
+        ing_div.appendChild(name);
+        createIngreedientListDOM(rec.ingreedients, ing_div);
+        row_div.appendChild(ing_div);
+    }
 
     //T ODO
-    var todo_div = document.createElement("div");
-    todo_div.id="todo_div";
-    var name = document.createElement("h2");
-    name.innerHTML = "Fremgangsmåte:";
-    todo_div.appendChild(name);
-    createTODOListDOM(rec.todo, todo_div);
-    row_div.appendChild(todo_div);
+    if(rec.todo.length>1){    
+        var todo_div = document.createElement("div");
+        todo_div.id="todo_div";
+        var name = document.createElement("h2");
+        name.innerHTML = "Fremgangsmåte:";
+        todo_div.appendChild(name);
+        createTODOListDOM(rec.todo, todo_div);
+        row_div.appendChild(todo_div);
 
-    div.appendChild(row_div);
-    document.getElementById("content").appendChild(div);
+        div.appendChild(row_div);
+        document.getElementById("content").appendChild(div);
+    }
 }
 
 createIngreedientListDOM=function(ing, div){

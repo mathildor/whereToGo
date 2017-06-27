@@ -93,24 +93,31 @@ showRecipeElements = function(recipies){
 
 function saveNewRecipe(){
     var newElement = getFormElement();
-    console.log('element to save is: ');
-    console.log(newElement);
-    recipe_id = window.location.href.split("?")[1];
+    allowedCategories = ["Middag", "Frokost", "Dessert", "Snacks", "Forrett", "Bakeverk"];
+    if(inList(newElement.category, allowedCategories)){
+        console.log('element to save is: ');
+        console.log(newElement);
+        recipe_id = window.location.href.split("?")[1];
 
-    if(editingMode == "True"){
-        console.log("Editing recipe");
-        ajaxPut("/recipes/"+recipe_id, newElement, function(){
-            console.log("element updated");
-            window.location.href="";
-        });
-        editingMode = "False";
+        if(editingMode == "True"){
+            console.log("Editing recipe");
+            ajaxPut("/recipes/"+recipe_id, newElement, function(){
+                console.log("element updated");
+                window.location.href="";
+            });
+            editingMode = "False";
+        }else{
+            console.log("Saving new recipe");
+            ajaxPost("/recipes", newElement, function(){
+                console.log('saved!');
+                // Reload page to show newly added recipe (if in active category)
+                showCategory(activeCategory);
+            });
+        }
+        //CLose popup
+        popup('popUpNewEvent');
     }else{
-        console.log("Saving new recipe");
-        ajaxPost("/recipes", newElement, function(){
-            console.log('saved!');
-            // Reload page to show newly added recipe (if in active category)
-            showCategory(activeCategory);
-        });
+
     }
 }
 
