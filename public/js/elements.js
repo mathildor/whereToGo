@@ -91,6 +91,15 @@ showRecipeElements = function(recipies){
 //     }
 // });
 
+function inList(el, list){
+    for(var i=0; i<list.lengt;i++){
+        if(list[i]==el){
+            return true;
+        }
+    }
+    return false;
+}
+
 function saveNewRecipe(){
     var newElement = getFormElement();
     allowedCategories = ["Middag", "Frokost", "Dessert", "Snacks", "Forrett", "Bakeverk"];
@@ -117,7 +126,7 @@ function saveNewRecipe(){
         //CLose popup
         popup('popUpNewEvent');
     }else{
-
+        alert("Kategori finnes ikke. Husk stor forbokstav!");
     }
 }
 
