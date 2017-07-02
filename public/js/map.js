@@ -1,5 +1,8 @@
 mapboxgl.accessToken = 'pk.eyJ1IjoibWF0aGlsZG8iLCJhIjoiY2lrdHZvMHdsMDAxMHdvbTR0MWZkY3FtaCJ9.u4bFYLBtEGNv4Qaa8Uaqzw';
 
+var map_mode = "default"; //draw
+
+
 var mapMarkers=[]; //adding objects of type {name: elementName, marker: markerObj}
 
 var map = new mapboxgl.Map({
@@ -8,6 +11,23 @@ var map = new mapboxgl.Map({
   center: [139.8, 35.7], // starting position
   zoom: 6 // starting zoom
 });
+
+//var Draw = new MapboxDraw();
+//map.addControl(Draw)
+//console.log(Draw.getMode());
+
+// map.on("draw.modechange", function(){
+//   console.log('modechange');
+//   console.log(Draw.getMode());
+//   if(Draw.getMode() == "simple_select"){
+//     //Turn on draw mode
+//     console.log("Change mode to default");
+//     map_mode = "default"
+//   }else{
+//     console.log("Change mode to draw");
+//     map_mode = "draw"
+//   }
+// });
 
 var address_el = document.getElementById("address-search");
 var geocoder = new google.maps.Geocoder();
@@ -119,15 +139,15 @@ function addMarker(element, type){
 
   el.className = 'marker '+type;
   if(type=="places"){ //want a star in map independent of saved img for place
-    el.style.backgroundImage = 'url(http://weknownyourdreamz.com/images/star/star-04.jpg)';
+    el.style.backgroundImage = 'url("../../img/star.png")';
   }else{
     el.style.backgroundImage = 'url(' + element.img + ')';
   }
   el.addEventListener('click', function() {
-    setMenuContent(element, type);
+    if(map_mode == "default"){
+      setMenuContent(element, type);
+    }
   });
-
-  //var popup = createPopup(element, 'element');
 
   // add marker to map
   var iconSize=[70, 70];
@@ -180,6 +200,8 @@ function removeMarker(el, type){
 
 function addElementsToMap(type){
   ajaxGet(type, function(elements){
+    console.log("Get req returns:");
+    console.log(elements);
     elements.forEach(
       function(el) {
         addMarker(el, type);

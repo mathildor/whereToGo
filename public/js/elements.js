@@ -78,7 +78,6 @@ function saveEditedElement(type){ //type = hostels / cites / restaurants
 
     //Close popup
     toggleWindow();
-
 }
 
 function editElementInDB(type){ //type = hostels / cites / restaurants

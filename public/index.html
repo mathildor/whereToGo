@@ -15,6 +15,11 @@
     <!-- <script src="https://maps.google.com/maps?file=api&amp;v=3&amp;sensor=false"type="text/javascript"></script> -->
 
     <link rel="shortcut icon" type="image/png" href="https://www.itewiki.fi/images/info2/paikkatieto-gis.png"/>
+    <!--  mapbox draw-->
+    <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v0.17.4/mapbox-gl-draw.css' type='text/css' />
+
+    <!-- <script src ="node_modules/@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw.js" -->
+    <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v0.17.4/mapbox-gl-draw.js'></script>
 
     <link href='/styles/main.min.css' rel='stylesheet' />
     <link href='/styles/markers.min.css' rel='stylesheet' />
@@ -28,12 +33,12 @@
     <div id='map'></div>
 
     <h1 id="header"> Where to go? </h1>
-    <input id="address-search" type="text" placeholder="Search adress..">Søk</input>
+    <input id="address-search" type="text" placeholder="Search adress.."></input>
     <div id="map-markers-menu">
         <img src="../img/hostel.png" class="disable" id="hostel-marker-btn"></img>
         <img src="../img/cite.png" class="disable" id="cite-marker-btn"></img>
         <img src="../img/restaurant.png" class="disable" id="restaurant-marker-btn"></img>
-        <img src="http://weknownyourdreamz.com/images/star/star-04.jpg" class="active" id="place-marker-btn"></img>
+        <img src="../img/star.png" class="active" id="place-marker-btn"></img>
     </div>
     <div id="sideMenu" class="hide">
         <div id="sideMenu-info">
