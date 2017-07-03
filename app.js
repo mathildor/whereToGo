@@ -14,6 +14,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 
+
 // ROUTES FOR OUR API
 // =============================================================================
 var router = express.Router();              // get an instance of the express Router
@@ -21,16 +22,21 @@ var router = express.Router();              // get an instance of the express Ro
 //Set root folder
 app.use(express.static(path.join(__dirname, 'public')));
 
+//Set access and allow for geosearch
+app.use('/geosearch', express.static(__dirname + '/node_modules/leaflet-geosearch/dist/'));
+
 mongoose.Promise = global.Promise; // avoid error - don't know what it does though
 
-//Connect to db:hSRXio83BXC50imfa4W14hFdq2LomCLk
-mongoose.connect('mongodb://heroku_1jx43111:ok8q77ulaphak6vnh1lrjd7jkq@ds135522.mlab.com:35522/heroku_1jx43111');
-// mongoose.connect('mongodb://heroku_8dg8fhxt:d20n7eafi30j543hsil10gslsf@ds157839.mlab.com:57839/heroku_8dg8fhxt');
+//Connect to db:
+mongoose.connect('mongodb://heroku_8dg8fhxt:d20n7eafi30j543hsil10gslsf@ds157839.mlab.com:57839/heroku_8dg8fhxt');
 
 // =========  API =======================================================================================================================
 
 //Import DB models:
-var Recipe      = require('./models/recipe');
+var Hostel      = require('./models/hostel');
+var Cite        = require('./models/cite');
+var Restaurant  = require('./models/restaurant');
+var Place       = require('./models/place');
 
 // REGISTER OUR ROUTES -------------------------------
 // all of our routes will be prefixed with /
@@ -40,48 +46,117 @@ app.use('/', router);
 router.get('/', function(req, res) {
     res.sendfile('index.html', { root: __dirname + "/public" } );
 });
-router.get('/recipes', function(req, res) {
-    res.sendfile('views/recipe.html', { root: __dirname + "/public" } );
-});
 
 // more routes for our API will happen here:
 
-//RECIPE ROUTES:
-router.route('/recipes/')
-    //create recipe:
+//HOSTEL ROUTES:
+router.route('/hostels/')
+    //create hostel:
     .post(function(req, res){
-        postFunction(req, res, 'recipes')
+        postFunction(req, res, 'hostels')
     })
-    //get all recipes
+    //get all hostels
     .get(function(req, res) {
-        getFunction(req, res, 'recipes')
+        getFunction(req, res, 'hostels')
     });
-router.route('/recipes/:element_id')
-    //Getting specific recipe
+router.route('/hostels/:element_id')
+    //Getting specific hostel
     .get(function(req, res){
-        getOneFunction(req, res, 'recipes');
+        getOneFunction(req, res, 'hostels');
     })
 
     .delete(function(req, res){
-        deleteOneFunction(req, res, 'recipes');
+        deleteOneFunction(req, res, 'hostels');
     })
 
-    //update recipe
+    //update hostel
     .put(function(req, res){
-        putOneFunction(req, res, 'recipes');
+        putOneFunction(req, res, 'hostels');
     });
-//Get all recipes for one category
-router.route('/recipes/category/:category_id')
-    //Getting specific recipe
+
+//CITES ROUTES
+router.route('/cites/')
+    //create cite:
+    .post(function(req, res){
+        postFunction(req, res, 'cites')
+    })
+    //get all cites
+    .get(function(req, res) {
+        getFunction(req, res, 'cites')
+    });
+
+router.route('/cites/:element_id')
+    //Getting specific cite
     .get(function(req, res){
-        getCategoryRecipes(req, res, 'recipes');
+        getOneFunction(req, res, 'cites');
+    })
+
+    .delete(function(req, res){
+        deleteOneFunction(req, res, 'cites');
+    })
+
+    //update cite
+    .put(function(req, res){
+        putOneFunction(req, res, 'cites');
+    });
+
+//RESTAURANTS ROUTES
+router.route('/restaurants/')
+    //create restaurant:
+    .post(function(req, res){
+        postFunction(req, res, 'restaurants')
+    })
+    //get all restaurants
+    .get(function(req, res) {
+        getFunction(req, res, 'restaurants')
+    });
+router.route('/restaurants/:element_id')
+    //Getting specific restuarant
+    .get(function(req, res){
+        getOneFunction(req, res, 'restaurants');
+    })
+
+    .delete(function(req, res){
+        deleteOneFunction(req, res, 'restaurants');
+    })
+
+    //update restuarant
+    .put(function(req, res){
+        putOneFunction(req, res, 'restaurants');
+    });
+//PLACES ROUTES
+router.route('/places/')
+    //create place:
+    .post(function(req, res){
+        postFunction(req, res, 'places')
+    })
+    //get all places
+    .get(function(req, res) {
+        getFunction(req, res, 'places')
+    });
+router.route('/places/:element_id')
+    //Getting specific restuarant
+    .get(function(req, res){
+        getOneFunction(req, res, 'places');
+    })
+
+    .delete(function(req, res){
+        deleteOneFunction(req, res, 'places');
+    })
+
+    //update restuarant
+    .put(function(req, res){
+        putOneFunction(req, res, 'places');
     });
 
 modelTypes = {
-    'recipes': Recipe
+    'hostels': Hostel,
+    'cites': Cite,
+    'restaurants': Restaurant,
+    'places': Place
 }
 
-function getFunction(req, res, type){ //type = recipes
+function getFunction(req, res, type){ //type = hostels / cites / restaurants / places
     var Model = modelTypes[type];
 
     console.log("get all: "+type);
@@ -92,7 +167,7 @@ function getFunction(req, res, type){ //type = recipes
     });
 }
 
-function postFunction(req, res, type){ //type = recipes
+function postFunction(req, res, type){ //type = hostels / cites / restaurants / places
     console.log('in post function');
     var Model = modelTypes[type];
 
@@ -107,18 +182,9 @@ function postFunction(req, res, type){ //type = recipes
         });
 }
 
-function getCategoryRecipes(req, res, type){
-    var Model = modelTypes[type];
-    Model.find({category: req.params.category_id}, function(err, elements){
-        if(err)
-            return res.send(err)
-        res.json(elements)
-    });
-}
-
 function getOneFunction(req, res, type){
     var Model = modelTypes[type];
-    Model.find({_id: req.params.element_id}, function(err, element){
+    Model.find({name: req.params.element_id}, function(err, element){
         if(err)
             return res.send(err)
         res.json(element)
@@ -128,7 +194,7 @@ function getOneFunction(req, res, type){
 function deleteOneFunction(req, res, type){
     console.log('in delete function');
     var Model = modelTypes[type];
-    Model.remove({_id: req.params.element_id}, function(err, element) {
+    Model.remove({name: req.params.element_id}, function(err, element) {
         if (err)
             return res.send(err);
 
@@ -140,19 +206,18 @@ function putOneFunction(req, res, type){
     console.log('in put function');
     var Model = modelTypes[type];
 
-    Model.find({_id: req.params.element_id}, function(err, elements){
+    Model.find({name: req.params.element_id}, function(err, elements){
         if (err)
             return res.send(err);
         element = elements[0];
 
         //Setting new values
-        element.name          = req.body.name;
-        element.img           = req.body.img;
-        element.category      = req.body.category;
-        element.link          = req.body.link;
-        element.ingreedients  = req.body.ingreedients;
-        element.todo          = req.body.todo;
-        element.comment       = req.body.comment;
+        element.name    = req.body.name;
+        element.img     = req.body.img;
+        element.rank    = req.body.rank;
+        element.link    = req.body.link;
+        element.coords  = req.body.coords;
+        element.comment = req.body.comment;
 
         element.save(function(err) {
             if (err)

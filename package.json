@@ -1,10 +1,11 @@
 {
-  "name": "oppskriftsbok",
+  "name": "wheretogo",
   "version": "1.0.0",
+  "description": "## Run $ bundle exec jekyll s",
   "dependencies": {
     "body-parser": "^1.17.1",
     "express": "^4.15.2",
-    "jquery": "^3.2.1",
+    "leaflet-geosearch": "^2.0.3",
     "mongoose": "^4.8.6",
     "path": "^0.12.7"
   },
@@ -14,8 +15,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mathildor/oppskriftsbok.git"
+    "url": "git+https://github.com/mathildor/whereToGo.git"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mathildor/whereToGo/issues"
+  },
+  "homepage": "https://github.com/mathildor/whereToGo#readme"
 }
