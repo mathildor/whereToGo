@@ -4,15 +4,11 @@
     <meta charset='utf-8' />
     <title>Oppskriftsbok</title>
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
-<<<<<<< HEAD
     <link rel="shortcut icon" type="image/png" href="https://www.itewiki.fi/images/info2/paikkatieto-gis.png"/>
-<<<<<<< HEAD
     <!--  mapbox draw-->
     <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v0.17.4/mapbox-gl-draw.css' type='text/css' />
-
     <!-- <script src ="node_modules/@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw.js" -->
     <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v0.17.4/mapbox-gl-draw.js'></script>
-=======
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.32.1/mapbox-gl.js'></script>
     <script src="https://unpkg.com/github-api/dist/GitHub.bundle.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -22,17 +18,15 @@
     <!--  google js api-->
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDNMgfdR0PzYVT9-7rFDStD7RIz7kgZ-xU&libraries=places"></script>
     <!-- <script src="https://maps.google.com/maps?file=api&amp;v=3&amp;sensor=false"type="text/javascript"></script> -->
->>>>>>> parent of 0b29459... margin bug fixed, favicon added
 
     <link href='/styles/main.min.css' rel='stylesheet' />
     <link href='/styles/markers.min.css' rel='stylesheet' />
     <link href='/styles/sideMenu.min.css' rel='stylesheet' />
 
-=======
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link href='styles/main.min.css' rel='stylesheet' />
     <link href='styles/main-original.css' rel='stylesheet' />
->>>>>>> aeb66855385b312c23f4813438e11d1bf8805b97
+
 </head>
 <body>
 
@@ -41,7 +35,6 @@
     <div class="row space"></div>
     <div class="row">
 
-<<<<<<< HEAD
     <h1 id="header"> Where to go? </h1>
     <input id="address-search" type="text" placeholder="Search adress.."></input>
     <div id="map-markers-menu">
@@ -52,78 +45,6 @@
     </div>
     <div id="sideMenu" class="hide">
         <div id="sideMenu-info">
-=======
-        <div class="col-sm-10" name="main page">
-            <div class="to-do-boxes">
-                <!-- first row for to-do -->
-                <div class="row" id="insert">
-                    <!--Here all the events go, added from js-->
-                </div>
-                <!-- end to-do boxes -->
-            </div>
-            <!-- end main page -->
-        </div>
-
-        <div id="Blanket" style="display:none"></div>
-
-        <div id="popUpDiv" style="display:none">
-            <div id="close">
-                <a href="#" onclick="popup('popUpDiv')">x</a>
-            </div>
-
-            <div class="pop-up-container" id="to-do-popup">
-                <div id="img-div">
-                    <img class="pop-up-photo">
-                </div>
-                <div id="recipe-content">
-                    <h2 class="pp-name"></h2>
-                    <ul class="ingredienser" id="ingr"></ul>
-                    <p class="descripcion"></p>
-                    <a class="pp-homepage">Homepage</a><br>
-                    <!-- <input type="submit" value="Done" id="eventDone"></input> -->
-                </div>
-            </div>
-
-        </div>
-
-        <div id="popUpNewEvent" style="display:none">
-            <div id="close">
-                <a href="#" onclick="popup('popUpNewEvent')">x</a>
-            </div>
-            <div class="pop-up-new-event-container">
-                <h1> Legg inn ny oppskrift: </h1>
-                <form>
-                    <input type="text" id="form-name" name="name" placeholder="Navn"><br>
-                    <input type="text" id="form-image" name="photo" placeholder="Url for bilde"><br>
-                    <!-- TODO: gjør om til dropdown med muligheter -->
-                    <input type="text" id="form-category" name="photo" placeholder="Kategori"><br>
-                    <textarea type="text" name="ingredienser" id="form-ingreedients" placeholder="Ingredienser"></textarea><br>
-                    <textarea name="descripcion" id="form-todo" placeholder="Beskrivelse"></textarea><br>
-                    <textarea name="comment" id="form-comment" placeholder="Kommentar"></textarea><br>
-                    <input type="text" name="homepage" id="form-link" placeholder="Url til hjemmeside"><br>
-                </form>
-                <input type="submit" value="Lagre ny oppskrift" id="saveEvent" onclick="saveNewRecipe()"></input>
-            </div>
-        </div>
-
-        <div id="sidebar" class="col-sm-2" name="info">
-            <div id="addRecipe">
-                <a href="#" onclick="popup('popUpNewEvent')">
-                    <img id="addEventPhoto" src="img/add_btn.png"></img>
-                </a>
-            </div>
-
-            <nav role="navigation" class="nav">
-                <ul class="nav nav-left">
-                    <li id="Forrett"class="sidebar-link" onclick="showCategory('Forrett')"><a>Forrett</a></li>
-                    <li id="Middag" class="sidebar-link" onclick="showCategory('Middag')"><a>Middag</a></li>
-                    <li id="Dessert" class="sidebar-link" onclick="showCategory('Dessert')"><a>Dessert</a></li>
-                    <li id="Frokost"class="sidebar-link" onclick="showCategory('Frokost')"><a>Frokost</a></li>
-                    <li id="Bakeverk"class="sidebar-link" onclick="showCategory('Bakeverk')"><a>Bakeverk</a></li>
-                    <li id="Snacks"class="sidebar-link" onclick="showCategory('Snacks')"><a>Snacks</a></li>
-                </ul>
-            </nav>
->>>>>>> aeb66855385b312c23f4813438e11d1bf8805b97
         </div>
     </div>
 </div>
